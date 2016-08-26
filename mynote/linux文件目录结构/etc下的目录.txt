@@ -1,0 +1,223 @@
+drwxr-xr-x.  4 root root   4096 5? 22 22:08 acpi
+-rw-r--r--.  1 root root     49 8?  5 16:42 adjtime
+-rw-r--r--.  1 root root   1512 1? 12 2010 aliases
+-rw-r--r--.  1 root root  12288 7? 28 11:17 aliases.db
+drwxr-xr-x.  2 root root   4096 5? 22 22:16 alsa
+drwxr-xr-x.  2 root root   4096 7? 29 09:15 alternatives
+-rw-------.  1 root root    541 11?10 2015 anacrontab
+-rw-r--r--.  1 root root    148 1? 12 2016 asound.conf
+-rw-r--r--.  1 root root      1 2? 20 2015 at.deny
+drwxr-x---.  3 root root   4096 5? 22 22:08 audisp
+drwxr-x---.  3 root root   4096 5? 22 22:09 audit
+drwxr-xr-x.  2 root root   4096 5? 22 21:56 avahi
+drwxr-xr-x.  2 root root   4096 5? 22 22:11 bash_completion.d
+-rw-r--r--.  1 root root   2681 10? 2 2013 bashrc
+drwxr-xr-x.  2 root root   4096 5? 11 06:58 blkid
+drwxr-xr-x.  2 root root   4096 5? 22 22:05 bluetooth
+drwxr-xr-x.  2 root root   4096 5? 22 22:16 bonobo-activation
+-rw-r--r--.  1 root root     27 5? 19 03:47 centos-release
+drwxr-xr-x.  2 root root   4096 5? 11 05:18 chkconfig.d
+drwxr-xr-x.  5 root root   4096 5? 22 21:56 ConsoleKit
+drwxr-xr-x.  2 root root   4096 5? 22 22:07 cron.d
+drwxr-xr-x.  2 root root   4096 5? 22 22:09 cron.daily
+-rw-------.  1 root root      0 11?10 2015 cron.deny
+drwxr-xr-x.  2 root root   4096 5? 22 21:59 cron.hourly
+drwxr-xr-x.  2 root root   4096 5? 22 22:08 cron.monthly
+-rw-r--r--.  1 root root    457 9? 27 2011 crontab
+drwxr-xr-x.  2 root root   4096 9? 27 2011 cron.weekly
+-rw-r--r--.  1 root root      0 7? 28 11:08 crypttab
+-rw-r--r--.  1 root root   1602 10? 2 2013 csh.cshrc
+-rw-r--r--.  1 root root    794 10? 2 2013 csh.login
+drwxr-xr-x.  4 root root   4096 5? 22 21:56 dbus-1
+drwxr-xr-x.  2 root root   4096 5? 22 21:56 default
+drwxr-xr-x.  2 root root   4096 5? 22 21:55 depmod.d
+drwxr-x---.  3 root root   4096 5? 12 03:22 dhcp
+-rw-r--r--.  1 root root   4439 4? 12 15:56 DIR_COLORS
+-rw-r--r--.  1 root root   5139 4? 12 15:56 DIR_COLORS.256color
+-rw-r--r--.  1 root root   4113 4? 12 15:56 DIR_COLORS.lightbgcolor
+-rw-r--r--.  1 root root  21214 5? 11 06:46 dnsmasq.conf
+drwxr-xr-x.  2 root root   4096 5? 11 06:46 dnsmasq.d
+-rw-r--r--.  1 root root    519 5? 11 14:22 dracut.conf
+drwxr-xr-x.  2 root root   4096 5? 11 14:22 dracut.conf.d
+-rw-r--r--.  1 root root   3384 5? 11 12:37 drirc
+-rw-r--r--.  1 root root      0 10? 2 2013 environment
+-rw-r--r--.  1 root root     28 5? 10 2012 ethers
+-rw-r--r--.  1 root root      0 1? 12 2010 exports
+lrwxrwxrwx.  1 root root     56 5? 22 21:55 favicon.png -> /usr/share/icons/hic
+olor/16x16/apps/system-logo-icon.png
+drwxr-xr-x.  2 root root   4096 5? 22 22:05 fcoe
+drwxr-xr-x.  2 root root   4096 5? 22 22:02 festival
+-rw-r--r--.  1 root root     64 10? 2 2013 filesystems
+drwxr-xr-x.  3 root root   4096 5? 22 22:07 firefox
+drwxr-xr-x.  4 root root   4096 5? 22 21:55 fonts
+-rw-r--r--.  1 root root     20 3? 10 2015 fprintd.conf
+-rw-r--r--.  1 root root    781 7? 28 11:08 fstab
+-rw-r--r--.  1 root root      0 5? 10 21:57 gai.conf
+drwxr-xr-x.  7 root root   4096 5? 22 21:57 gconf
+drwxr-xr-x.  2 root root   4096 10?24 2013 gcrypt
+drwxr-xr-x.  6 root root   4096 5? 22 22:04 gdm
+drwxr-xr-x.  3 root root   4096 5? 22 22:03 ghostscript
+drwxr-xr-x.  3 root root   4096 5? 22 21:57 gnome-vfs-2.0
+drwxr-xr-x.  2 root root   4096 6? 30 2014 gnupg
+-rw-r--r--   1 root root    794 8?  1 15:35 group
+-rw-r--r--.  1 root root    779 8?  1 15:35 group-
+lrwxrwxrwx.  1 root root     22 7? 28 11:09 grub.conf -> ../boot/grub/grub.conf
+----------   1 root root    653 8?  1 15:35 gshadow
+----------.  1 root root    640 8?  1 15:35 gshadow-
+drwxr-xr-x.  2 root root   4096 5? 22 22:02 gtk-2.0
+drwxr-xr-x.  3 root root   4096 5? 22 22:04 hal
+-rw-r--r--.  1 root root    871 5? 22 21:55 hba.conf
+-rw-r--r--.  1 root root      9 10? 2 2013 host.conf
+-rw-r--r--.  2 root root     83 8?  6 09:20 hosts
+-rw-r--r--.  1 root root    370 1? 12 2010 hosts.allow
+-rw-r--r--.  1 root root    460 1? 12 2010 hosts.deny
+drwxr-xr-x   4 root root   4096 8?  1 15:35 httpd
+drwxr-xr-x.  2 root root   4096 7? 29 10:07 ImageMagick
+drwxr-xr-x.  2 root root   4096 5? 22 22:08 init
+-rw-r--r--.  1 root root      0 5? 11 05:13 init.conf
+lrwxrwxrwx.  1 root root     11 5? 22 21:51 init.d -> rc.d/init.d
+-rw-r--r--.  1 root root    884 7? 29 23:38 inittab
+-rw-r--r--.  1 root root    942 1? 12 2010 inputrc
+drwxr-xr-x.  2 root root   4096 5? 22 21:58 iproute2
+drwxr-xr-x.  2 root root   4096 5? 22 21:59 iscsi
+-rw-r--r--.  1 root root     47 5? 19 03:47 issue
+-rw-r--r--.  1 root root     46 5? 19 03:47 issue.net
+drwxr-xr-x.  3 root root   4096 7? 28 16:37 java
+drwxr-xr-x.  2 root root   4096 5? 11 02:27 jvm
+drwxr-xr-x.  2 root root   4096 5? 11 02:27 jvm-commmon
+drwxr-xr-x.  4 root root   4096 5? 22 22:06 kdump-adv-conf
+-rw-r--r--.  1 root root   8120 7? 28 11:54 kdump.conf
+-rw-r--r--.  1 root root    449 3?  9 07:56 krb5.conf
+-rw-r--r--   1 root root  48070 8?  1 15:35 ld.so.cache
+-rw-r--r--.  1 root root     28 7? 25 2013 ld.so.conf
+drwxr-xr-x.  2 root root   4096 5? 22 22:05 ld.so.conf.d
+-rw-r-----.  1 root root    191 12?19 2015 libaudit.conf
+drwxr-xr-x.  5 root root   4096 5? 22 22:03 libreport
+-rw-r--r--.  1 root root   2293 7? 28 11:09 libuser.conf
+-rw-r--r--.  6 root root    388 3? 25 10:50 localtime
+-rw-r--r--.  1 root root   1833 7? 28 11:09 login.defs
+-rw-r--r--.  1 root root    662 8? 29 2007 logrotate.conf
+drwxr-xr-x.  2 root root   4096 8?  1 15:35 logrotate.d
+drwxr-xr-x.  6 root root   4096 5? 22 21:58 lvm
+-rw-r--r--.  1 root root    111 5? 11 05:02 magic
+-rw-r--r--   1 root root    272 11?18 2009 mailcap
+-rw-r--r--.  1 root root   1909 12?17 2014 mail.rc
+drwxr-xr-x.  2 root root   4096 5? 22 21:56 makedev.d
+-rw-r--r--.  1 root root   4940 2? 22 2013 man.config
+drwxr-xr-x.  3 root root   4096 7? 28 16:37 maven
+-rw-r--r--   1 root root  43591 9? 23 2011 mime.types
+-rw-r--r--.  1 root root    827 7? 24 2015 mke2fs.conf
+drwxr-xr-x.  2 root root   4096 8?  3 07:41 modprobe.d
+-rw-r--r--.  1 root root      0 1? 12 2010 motd
+-rw-r--r--   1 root root    433 8?  6 09:10 mtab
+-rw-r--r--.  1 root root   2620 8? 17 2010 mtools.conf
+drwxr-xr-x.  2 root root   4096 5? 11 12:08 multipath
+-rw-r--r--.  1 root root    251 5? 11 14:31 my.cnf
+drwxr-xr-x.  5 root root   4096 5? 22 22:03 NetworkManager
+-rw-r--r--.  1 root root     58 5? 12 03:34 networks
+-rw-r--r--.  1 root root   1688 5?  5 2010 nsswitch.conf
+drwxr-xr-x.  3 root root   4096 5? 22 21:59 ntp
+-rw-r--r--.  1 root root   1778 7? 28 11:22 ntp.conf
+drwxr-xr-x.  2 root root   4096 5? 22 22:03 obex-data-server
+-rw-r--r--.  1 root root   3023 11?12 2010 openct.conf
+drwxr-xr-x.  3 root root   4096 7? 28 11:09 openldap
+drwxr-xr-x.  2 root root   4096 9? 23 2011 opt
+drwxr-xr-x.  2 root root   4096 5? 22 22:01 PackageKit
+drwxr-xr-x.  2 root root   4096 8?  1 15:35 pam.d
+drwxr-xr-x.  3 root root   4096 5? 22 22:00 pango
+-rw-r--r--   1 root root   1493 8?  1 15:35 passwd
+-rw-r--r--.  1 root root   1433 8?  1 15:35 passwd-
+drwxr-xr-x.  2 root root   4096 5? 22 22:06 pcmcia
+drwxr-xr-x   2 root root   4096 8?  1 15:35 php.d
+-rw-r--r--   1 root root  69097 5? 11 05:42 php.ini
+-rw-r--r--.  1 root root   2872 8? 21 2010 pinforc
+drwxr-xr-x.  3 root root   4096 5? 22 21:53 pkcs11
+drwxr-xr-x.  9 root root   4096 5? 22 21:59 pki
+drwxr-xr-x.  2 root root   4096 5? 22 21:58 plymouth
+drwxr-xr-x.  5 root root   4096 5? 22 21:50 pm
+-rw-r--r--.  1 root root    370 10?15 2014 pm-utils-hd-apm-restore.conf
+drwxr-xr-x.  5 root root   4096 5? 22 21:56 polkit-1
+drwxr-xr-x.  2 root root   4096 8? 21 2010 popt.d
+drwxr-xr-x.  2 root root   4096 5? 22 21:59 postfix
+drwxr-xr-x.  3 root root   4096 5? 22 22:16 ppp
+-rw-r--r--   1 root root 199324 8?  3 09:12 prelink.cache
+-rw-r--r--.  1 root root    789 7? 19 2013 prelink.conf
+drwxr-xr-x.  2 root root   4096 8? 19 2013 prelink.conf.d
+-rw-r--r--.  1 root root    233 1? 12 2010 printcap
+-rw-r--r--.  1 root root   1796 10? 2 2013 profile
+drwxr-xr-x.  2 root root   4096 5? 22 22:08 profile.d
+-rw-r--r--.  1 root root   6455 1? 12 2010 protocols
+drwxr-xr-x.  2 root root   4096 5? 22 22:05 pulse
+-rw-r--r--.  1 root root    220 10?14 2008 quotagrpadmins
+-rw-r--r--.  1 root root    259 7? 24 2015 quotatab
+lrwxrwxrwx.  1 root root      7 5? 22 21:58 rc -> rc.d/rc
+lrwxrwxrwx.  1 root root     10 5? 22 21:58 rc0.d -> rc.d/rc0.d
+lrwxrwxrwx.  1 root root     10 5? 22 21:58 rc1.d -> rc.d/rc1.d
+lrwxrwxrwx.  1 root root     10 5? 22 21:58 rc2.d -> rc.d/rc2.d
+lrwxrwxrwx.  1 root root     10 5? 22 21:58 rc3.d -> rc.d/rc3.d
+lrwxrwxrwx.  1 root root     10 5? 22 21:58 rc4.d -> rc.d/rc4.d
+lrwxrwxrwx.  1 root root     10 5? 22 21:58 rc5.d -> rc.d/rc5.d
+lrwxrwxrwx.  1 root root     10 5? 22 21:58 rc6.d -> rc.d/rc6.d
+drwxr-xr-x. 10 root root   4096 5? 22 21:58 rc.d
+lrwxrwxrwx.  1 root root     13 5? 22 21:58 rc.local -> rc.d/rc.local
+lrwxrwxrwx.  1 root root     15 5? 22 21:58 rc.sysinit -> rc.d/rc.sysinit
+drwxr-xr-x.  2 root root   4096 5? 22 22:06 rdma
+-rw-r--r--.  1 root root    966 11?23 2013 readahead.conf
+-rw-r--r--.  1 root root    729 8?  6 08:54 reader.conf
+drwxr-xr-x.  2 root root   4096 5? 22 22:04 reader.conf.d
+lrwxrwxrwx.  1 root root     14 5? 22 21:51 redhat-release -> centos-release
+-rw-r--r--   2 root root     93 8?  6 09:20 resolv.conf
+-rw-r--r--.  1 root root   1615 5?  4 2010 rpc
+drwxr-xr-x.  2 root root   4096 8?  1 15:35 rpm
+-rw-r--r--.  1 root root   2875 12?10 2014 rsyslog.conf
+drwxr-xr-x.  2 root root   4096 5? 22 22:07 rsyslog.d
+-rw-r--r--.  1 root root    930 5? 12 03:34 rwtab
+drwxr-xr-x.  2 root root   4096 5? 12 03:34 rwtab.d
+drwxr-xr-x.  2 root root   4096 5? 22 21:59 samba
+drwxr-xr-x.  2 root root   4096 5? 22 21:59 sasl2
+drwxr-xr-x.  3 root root   4096 5? 22 22:11 scl
+-rw-------.  1 root root    122 1? 12 2010 securetty
+drwxr-xr-x.  6 root root   4096 5? 22 22:16 security
+drwxr-xr-x.  3 root root   4096 7? 30 15:59 selinux
+-rw-r--r--.  1 root root 641020 10? 2 2013 services
+-rw-r--r--.  1 root root    216 5? 11 06:57 sestatus.conf
+drwxr-xr-x.  2 root root   4096 5? 22 21:59 setuptool.d
+drwxr-xr-x.  3 root root   4096 5? 22 21:55 sgml
+----------   1 root root   1086 8?  1 15:35 shadow
+----------.  1 root root   1062 8?  1 15:35 shadow-
+-rw-r--r--.  1 root root     61 5? 22 22:08 shells
+drwxr-xr-x.  4 root root   4096 5? 22 22:02 skel
+-rw-r--r--.  1 root root   6717 2? 22 2013 smartd.conf
+-rw-r--r--.  1 root root    256 5? 12 04:21 sos.conf
+drwxr-xr-x.  3 root root   4096 5? 22 22:02 sound
+drwxr-xr-x.  2 root root   4096 7? 29 15:46 ssh
+drwxr-xr-x.  2 root root   4096 5? 22 22:16 ssl
+-rw-r--r--.  1 root root    212 5? 12 03:34 statetab
+drwxr-xr-x.  2 root root   4096 5? 12 03:34 statetab.d
+-rw-r-----.  1 root root   1786 9? 25 2012 sudo.conf
+-r--r-----.  1 root root   3729 12? 8 2015 sudoers
+drwxr-x---.  2 root root   4096 5? 11 07:13 sudoers.d
+-rw-r-----.  1 root root   3181 3?  1 23:01 sudo-ldap.conf
+drwxr-xr-x.  8 root root   4096 8?  6 09:21 sysconfig
+-rw-r--r--.  1 root root   1057 5? 12 03:34 sysctl.conf
+drwxr-xr-x.  2 root root   4096 5? 12 03:34 sysctl.d
+lrwxrwxrwx.  1 root root     14 5? 22 21:51 system-release -> centos-release
+-rw-r--r--.  1 root root     25 5? 19 03:47 system-release-cpe
+drwxr-xr-x.  2 root root   4096 3? 16 2015 terminfo
+drwxr-xr-x.  4 root root   4096 5? 22 21:58 udev
+-rw-r--r--.  1 root root    478 1? 26 2015 updatedb.conf
+-rw-r--r--.  1 root root   1982 3? 31 2015 vimrc
+-rw-r--r--.  1 root root   1982 3? 31 2015 virc
+drwxr-xr-x.  2 root root   4096 7? 29 13:41 vsftpd
+drwxr-xr-x.  2 root root   4096 7? 29 10:03 w3m
+-rw-r--r--.  1 root root   3008 7? 24 2015 warnquota.conf
+-rw-r--r--.  1 root root   4479 1? 13 2016 wgetrc
+drwxr-xr-x.  2 root root   4096 5? 22 21:59 wpa_supplicant
+-rw-r--r--   1 root root      0 8?  6 09:20 wvdial.conf
+drwxr-xr-x.  6 root root   4096 5? 22 22:04 X11
+drwxr-xr-x.  4 root root   4096 5? 22 22:03 xdg
+drwxr-xr-x.  2 root root   4096 5? 22 22:09 xinetd.d
+drwxr-xr-x.  2 root root   4096 5? 22 21:50 xml
+drwxr-xr-x.  5 root root   4096 5? 22 21:57 yum
+-rw-r--r--.  1 root root    969 5? 12 04:37 yum.conf
+drwxr-xr-x.  2 root root   4096 5? 12 04:37 yum.repos.d
