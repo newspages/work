@@ -1,0 +1,4 @@
+linux下安装vim
+
+常见的如红帽、Fedora、CentOS 可以用 sudo yum install vim 既可
+如果是Ubuntu或者Debian，运行 sudo apt-get install vim 既可
