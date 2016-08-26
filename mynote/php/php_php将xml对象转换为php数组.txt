@@ -1,0 +1,83 @@
+在很多开发项目中，我们都会遇到将XML文件转换为数组使用，因此在本篇PHP教程中，UncleToo和大家一起学习如何转换XML为数组。
+
+现在有一个uncletoo.xml的配置文件，格式如下：
+<h6>Step 1: XML File</h6>
+<?xml version='1.0'?>
+<moleculedb>
+    <molecule name='Benzine'>
+        <symbol>ben</symbol>
+        <code>A</code>
+    </molecule>
+    <molecule name='Water'>
+        <symbol>h2o</symbol>
+        <code>K</code>
+    </molecule>
+<molecule name='Parvez'>
+        <symbol>h2o</symbol>
+        <code>K</code>
+    </molecule>
+</moleculedb>
+
+
+1、读XML文件内容，并保存到字符串变量中
+
+下面我们使用PHP自带的file_get_contents()函数将文件内容读取到一个字符串变量中：
+
+$xmlfile = file_get_contents($path);
+
+此时$xmlfile变量的值如下：
+
+PHP将XML转换为数组
+
+
+
+2、将字符串转换为对象
+
+这一步我们将使用simplexml_load_string()函数，将上一步得到的字符串转换为对象（Object）：
+
+$ob= simplexml_load_string($xmlfile);
+
+此时$ob的值如下：
+
+PHP将XML转换为数组
+
+
+
+3、将对象转换为JSON
+
+上一步转换成对象后，现在，我们要将对象转换成JSON格式字符串：
+
+$json  = json_encode($ob);
+
+此时$json变量的值如下：
+
+PHP将XML转换为数组
+
+
+
+4、解析JSON字符串
+
+这也是最后一步了，我们需要将JSON格式的字符串转换为我们需要的数组：
+
+$configData = json_decode($json, true);
+
+现在$configData里存储的数据就是我么最后要得到的数组，如下：
+
+PHP将XML转换为数组
+
+
+
+完整转换代码：
+
+1
+2
+3
+4
+5
+6
+<?php
+$xmlfile = file_get_contents($path);
+$ob= simplexml_load_string($xmlfile);
+$json  = json_encode($ob);
+$configData = json_decode($json, true);
+?>
