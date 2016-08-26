@@ -1,0 +1,6 @@
+php实现返回上一页的功能的3种有效方法
+  header(location:你的上一页的路径);   //   注意这个函数前不能有输出
+
+  header(location:.getenv("HTTP_REFERER"));   //   返回其调用页面
+
+  echo"<script>alert('随便写点什么');history.go(-1);</script>";
