@@ -1,0 +1,67 @@
+ubuntu下命令使用：
+从命令行模式进入图形界面模式：ctrl + alt + f6
+从图形界面模式进入命令行模式：ctrl + alt + f7
+
+复制一行数据：将光标移动到要复制的行上，按 yy ，然后将光标移动到要粘贴的地方 按 p
+1）把光标移动到要复制的行上
+2）按yy
+3）把光标移动到要复制的位置
+4）按p
+
+#sudo = super-user do
+重置root密码：sudo passwd 用户名 （如果是管理员身份，回车后系统要求输入新密码，但是没有要求输入旧密码）
+sudo passwd root
+如果是普通用户身份重置密码的方式：
+sudo passwd 用户名（如果没有写上用户名默认就是当前用户）
+回车此时要求输入原密码（这就保证了普通用户不能修改别人的密码），输完原密码后回车，
+就可以输入new 密码了
+
+添加新用户
+[sudo] useradd 用户名
+ 给用户设置密码
+[sudo] passwd 用户名（如果没有给出用户名，默认是给当前用户设置密码）
+
+
+
+ping ip地址
+linux的 ping 命令和windows不一样。windows默认只发送四个包的。
+你可以使用ping -c 4 [ip/域名]这种方式来实现你想要的。（ping -c n ip）
+如：ping -c 4 www.baidu.com 就只会ping4次而已
+linux控制台程序一般强制终止都是Ctrl+C。部分使用Ctr+D。倘若是这两种都无法使用的话，需要使用Ctr+Z将当年任务后台化，然后通过jobs 和kill %n命令来强制终止。
+
+linux防火墙
+service iptables status可以查看到iptables服务的当前状态。
+但是即使服务运行了,防火墙也不一定起作用,你还得看防火墙规则的设置 iptables -L
+在此说一下关于启动和关闭防火墙的命令:
+1) 重启后生效
+开启： chkconfig iptables on
+关闭： chkconfig iptables off
+2) 即时生效，重启后失效
+开启： service iptables start
+关闭： service iptables stop
+
+另外一种方式：
+cd /etc/init.d/iptables status
+cd /etc/init.d/iptables restart
+cd /etc/init.d/iptables stop
+
+配置防火墙
+cd /etc/sysconfig/iptables
+
+开启ssh服务
+service sshd start
+service sshd stop
+service sshd restart
+
+如果windows下能ping通linux，但是ssh连不上linux远程桌面，那么很有可能是sshd服务没开启，或者是防火墙没关闭
+
+重量级命令setup 可以配置网关，防火墙等等
+
+linux网络配置的三种方法：
+1.setup配置network
+不能立即生效，必须要重启网络：cd /etc/rc.d/init.d/network restart 或者 service network restart 才能生效，可能还需要退出再登录
+2.ifconfig eth* 129.28.66.66
+这种方法可以立即生效，但是退出再登录时就失效了
+3.直接修改网络配置文件
+cd /etc/sysconfig/network-scripts/ifcfg-lo
+这种也是需要执行：cd /etc/rc.d/init.d/network restart 或者 service network restart 重启网络才能生效

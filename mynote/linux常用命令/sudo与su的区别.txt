@@ -1,0 +1,57 @@
+Ubuntu进入root权限命令——sudo和su命令详解 (2013-03-12 16:58:30)转载▼
+标签： sudo it	分类： ubuntu
+ubuntu用户管理
+sudo意思就是super-user do，让当前用户暂时以管理员的身份root来执行这条命令。
+su是用来改变当前用户的，su root，就是将当前用户切换为root，用了su root之后，下面所有的命令就可以不用打sudo了，因为当前用户已经是管理员root了。
+root 用户为根用户，也就是 系统管理员 拥有全部权限
+一个用户只能拥有一个 GID ，但是还可以归属于其它附加群组
+
+用户管理的重要配置文件：
+/etc/passwd 用户名 密码位 UID 归属GID 姓名 $HOME目录 登录Shell/etc/shadow 用户名 已加密密码 密码改动信息 密码策略/etc/group 群组名 密码位 GID 组内用户/etc/gshadow 群组密码相关文件，不重要/etc/sudoers 用户名 权限定义 权限[/pre]可以使用 pwconv 命令创建影子密码，将 /etc/passwd 文件中的密码转换到 /etc/shadow 文件
+
+su [用户名]
+切换到其它用户，默认切换到root用户。提示密码为将切换用户密码 -f 快速切换，忽略配置文件-l 重新登录-m ，-p 不更改环境变量-c <命令> 切换后执行命令，并退出切换
+
+sudo [命令]
+以其它用户的身份执行命令，默认以root的身份执行。提示密码为当前用户密码 -s 切换为root shell-i 切换为root shell，并初始化-u <用户名|UID> 执行命令的身份-l 显示自己的权限
+
+passwd [用户名]
+设定用户密码
+-d 清除密码 -l 锁定用户-e 使密码过期，在下次登录时更改密码-S 显示密码认证信息-x <天数> 密码过期，最大使用时间-n <天数> 冻结密码，最小使用时间-s 更改登录Shell-f 更改用户信息
+示例：
+$passwdChanging password for user(current) UNIX password: 原密码Enter new UNIX password: 新密码Retype new UNIX password: 确认新密码[/pre
+
+chsh [-s ] [用户名]
+更改登录Shell
+1.sudo的缺省配置
+默认时，Ubuntu为 sudo提供了一个基本的配置，该配置保存在/etc目录下的sudoers文件中。在修改该配置文件时，务必使用visudo工具来进行编辑，因为该工具会自动对配置语法进行严格检查，如果发现错误，在保存退出时给出警告，并提示你哪段配置出错，从而确保该配置文件的正确性。相反， 如果使用其它的文本编辑程序的话，一旦出错，就会给系统带来严重的后果。下面给出的是Ubuntu默认的/etc/sudoers文件内容：
+# User privilege specificationroot ALL=(ALL) ALL
+# Members of the admin group may gain root privileges�min ALL=(ALL) ALL
+下面对以上配置做简要说明：
+第 一项配置的作用，是允许root用户使用sudo命令变成系统中任何其它类型的用户。
+第二个配置规定，管理组中的所有成员都能以root的身份执行所有命令。
+因此，在默认安装的Ubuntu系统中，要想作为root身份来执行命令的话，只要在sudo后面跟上欲执行的命令即可。
+下面用一个例子加以说明，如果您想执行apt-get update的话，应当在命令行中键入以下内容：
+$ sudo apt-get update
+2.配置文件语法详解
+接下来，我们用一个实例来详细解释/etc/sudoers文件的配置语法，请看下面的例子：
+jorge ALL=(root) /usr/bin/find, /bin/rm
+上面的第一栏规定它的适用对象：用户或组，就本例来说，它是用户jorge。此外，
+因为系统中的组和用户可以重名，要想指定该规则的适用对象是组而非用户的话，组对象的名称一定要用百分号%开头。
+第二栏指定该规则的适用主机。当我们在多个系统之间部署sudo环境时，这一栏格外有用，这里的ALL代表所有主机。但是，对于桌面系统或不想将 sudo部署到多个系统的情况，这一栏就换成相应的主机名。
+第三栏的值放在括号内，指出第一栏规定的用户能够以何种身份来执行命令。本例中该值设为root，这意味着用户jorge能够以root用户的身份 来运行后面列出的命令。该值也可以设成通配符ALL，jorge便能作为系统中的任何用户来执行列出的命令了。
+最后一栏（即/usr/bin/find, /bin/rm）是使用逗号分开的命令表，这些命令能被第一栏规定的用户以第三栏指出的身份来运行它们。本例中，该配置允许jorge作为超级用户运行 /usr/bin/find和 /bin/rm这两个命令。需要指出的是，这里列出的命令一定要使用绝对路径。
+3.sudo命令的使用方法
+现在的问题是，用户jorge怎样利用分配给他的权限呢？
+其实很简单，只要在命令行模式下使用sudo命令
+加上他想运行的程序就可以了，比如：jorge@Ubuntu:~$ sudo find . ! -name '*.avi' -exec rm -f //{//} //;
+倘若jorge企图执行/etc/sudoers文件规定之外的程序（比如find 或 rm）的话，sudo命令便会以失败而告终，并给出警告信息，指出他无权以超级用户身份来运行这些命令。
+要想以非root用户身份来运行命令，必须使用-u选项来指定想要作为的用户；否则的话，sudo会默认为root用户，比如要想以fred身份来 执行ls命令，就应该这样：$ sudo -u fred ls /home/fred
+就 像您看到的那样，我们可以利用这些规则为系统创建具体的角色。例如，要让一个组负责帐户管理，你一方面不想让这些用户具备完全的root访问权限，另一方 面还得让他们具有增加和删除用户的权利，那么我们可以在系统上创建一个名为accounts的组，然后把那些用户添加到这个组里。之后，再使用 visudo为/etc/sudoers添加下列内容：�counts ALL=(root) /usr/sbin/useradd, /usr/sbin/userdel, /usr/sbin/usermod
+现在好了，accounts组中的任何成员都能运行useradd、userdel和usermod命令了。如果过一段时间后，您发现该角色还需要其他工具，只要在该表的尾部将其添上就行了。这样真是方便极了！
+需要注意的是，当我们为用户定义可以运行的命令时，必须使用完整的命令路径。这样做是完全出于安全的考虑，如果我们给出的命令只是简单的userad而非 /usr/sbin/useradd，那么用户有可能创建一个他自己的脚本，也叫做userad，然后放在它的本地路径中，如此一来他就能够通过这个名为 useradd的本地脚本，作为root来执行任何他想要的命令了。这是相当危险的！
+sudo命令的另一个便捷的功能，是它能够指出哪些 命令在执行时不需要输入密码。这很有用，尤其是在非交互式脚本中以超级用户的身份来运行某些命令的时候。例如，想要让用户作为超级用户不必输入密码就能执 行kill命令，以便用户能立刻杀死一个失控的进程。为此，在命令行前边加上NOPASSWD:属性即可。例如，可以在/etc/sudoers文件中加 上下面一行，从而让jorge获得这种权力：jorge ALL=(root) NOPASSWD: /bin/kill, /usr/bin/killall
+这样一来，jorge就能运行以下命令，作为root用户来杀死失控的rm进程了。jorge@Ubuntu:~$ sudo killall rm
+6.如何启用root帐户
+通过以上介绍，我们发现sudo的确很好用，但是如果您早就习惯了在root下工作，想回味一下过去的感觉该怎么办呢？很简单，只要为root设置 一个root密码就行了：$ sudo passwd root
+好了，现在您能直接作为root登录了。

@@ -1,0 +1,10 @@
+ubuntu
+一般在前面加上sudo，意思是以root权限执行(即系统的最高权限执行命令)，使用sudo执行命令时一般要求输入密码，但是这个密码是普通用户的密码就可以了，
+这是linux提供sudo给用户使用root权限的的方法，而不要求普通用户需要知道root的密码才能使用root权限执行命令。
+sudo apt-get install gpm //该命令是用来安装gpm包的，这个gpm包可以使得linux命令行下也可以使用鼠标进行复制粘贴
+
+linux下启动服务：
+service gpm start
+
+设置为自动启动：
+chkconfig gpm on
