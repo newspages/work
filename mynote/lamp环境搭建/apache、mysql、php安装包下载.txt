@@ -1,0 +1,4 @@
+mysql 官网下载 linux版本安装包方法：
+登录mysql官网---->Community---->MySql Community Server ---->在下拉选项中可以直接选对应的linux版本下载，也可以选源码 Source Code 下载源码
+比如对于 centos linux版本在mysql官网就没有唯一对应的安装包，这是我们可以选择源码下载，选择 Source Code 之后在下面列出来的下载文件中选择 Generic Linux （通用 Linux）进行下载即可
+

@@ -1,0 +1,22 @@
+Centos系统下Lamp环境的快速搭建(超详细)
+lamp的搭建对于初学者是一件很头疼的事情，所以借此机会把自己当初快速搭建linux+apche+mysql+php的方法分享大家希望能到你。
+
+首先为了搭建一个稳定的lamp的练习环境,确保你的虚拟机可以连网,这里我们使用的yum安装,它可以帮助我们解决软件自己的依赖关系.我还在后面加了postgresql数据库如果不需要的话可以去掉和postgresql的参数.命令如下
+yum -y install httpd mysql mysql-server php php-mysql postgresql postgresql-server php-postgresql php-pgsql php-devel  (yum安装过程,大概1-2分钟)
+
+启动apache服务并查看时候启动成功
+命令如下:（切记用root用户启动服务）
+           启动：/etc/rc.d/init.d/httpd start
+           检测启动结果：ps aux | grep httpd
+
+查看服务器的ip并进入网站根目录新建一个phpinfo.php的程序，用于查看php相关配置信息。
+
+如果上述进展顺利，那我们接下来进行mysql数据库的配置
+命令如下：
+             启动：  /etc/rc.d/init.d/mysqld start
+             检查启动结果：  netstat -tulnp | grep ：3306
+              修改root密码： mysqladmin -u root password ‘你想设置的密码’
+
+进入mysql数据库，创建demo库和用于测试的person表，并插入测试数据
+
+最后编写php连接mysql的测试代码，检测mysql是否能正常配合php工作
