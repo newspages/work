@@ -1,0 +1,11 @@
+统一入口文件 index.php
+执行index.php文件，在index.php文件中加载ThinkPHP目录下的ThinkPHP.php文件
+ThinkPHP.php文件主要是对常量进行定义，比如整个框架各个文件存放目录，将文件的目录路径存放在一个常量中，
+判断php版本，记录内存系统分配给thinkphp的内存大小和系统运行时间，判断系统运行的平台是 linux 还是 windows ，判断系统是在什么服务器下运行的 apache+mysql 还是 nginx+mysql
+加载Think核心类文件，调用Think::start();(执行Think.class.php文件中的start方法)
+Think.class.php文件主要是设置错误处理机制和设置自动加载机制，初始化文件存储方式，读取应用模式 读取ThinkPHP/Mode/common.php下的common.php配置文件 ，加载核心文件 载入核心文件刚和配置文件
+加载应用模式配置文件 (加载应用Application下的Common下的Conf下的config.php文件)，读取应用调试配置文件，    记录加载文件时间 ，调用Think\App类的run方法启动应用 App::run();
+进入App.class.php文件执行到
+// URL调度
+Dispatcher::dispatch();
+在dispatch()方法中实现了对应用中的自定义模块（如Home、Admin模块）中的配置信息Conf/config.php和公共函数文件Common/function.php进行加载以及解析URL中的模块、控制器、操作实现对相应的模块、控制器、操作的访问。
