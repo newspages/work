@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" size="20" name="upfile" id="upfile" style="border:1px dotted #ccc">
+    <input type="button" value="浏览" onclick="path.click()" style="border:1px solid #ccc;background:#fff">
+    <input type="file" id="path" style="display:none" onchange="upfile.value=this.value">
+    写成这样，用一个text和一个button替代file，然后让file隐藏
+</body>
+</html>

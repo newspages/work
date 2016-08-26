@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>社交列表</title>
+    <script type="text/javascript" src="/web/admin/static/js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="/web/admin/static/js/jquery-ui"></script>
+    <link href="/web/admin/static/css/bootstrap-combined.min.css" rel="stylesheet" media="screen"/>
+    <script type="text/javascript" src="/web/admin/static/js/bootstrap.min.js"></script>
+    <link href="/web/admin/static/css/table.css" rel="stylesheet" media="screen"/>
+    <style type="text/css">
+        td{text-align:center;}
+        td img{max-width:75px;max-height:100px;width:auto;height:auto;}
+    </style>
+    <script type="text/javascript" src="/web/admin/static/js/jquery.min.js"></script>
+
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <br/>
+        <div class="span1"></div>
+        <div class="span10" style="border: 1px solid ; padding: 50px;">
+            <div class="list">
+                <table class="table table-bordered table-hover table-condensed">
+                    <tr>
+                        <th>发布人</th>
+                        <th>信息</th>
+                        <th>图片</th>
+                        <th>点赞数</th>
+                        <th>评论数</th>
+                        <th>发布地方</th>
+                        <th>发布时间</th>
+                        <th>操作</th>
+                    </tr>
+                    <{foreach from=$list key=k item=v}>
+                    <tr data-squareid="<{$v.SquareId}>">
+                        <td><{$v.UserName}></td>
+                        <td><a href="Social2.php?SquareId=<{$v.SquareId}>" title="查看详情" target="_blank"><{$v.Message}></a></td>
+                    </tr>
+                    <{/foreach}>
+                </table>
+            </div>
+            <div style="float: left;border: 0px solid;">总记录 <{$total}> 条</div>
+
+            <div style="float:right;border: 0px solid;">
+                第<{$page}>页(总共 <{$total_page}> 页)
+                <!--利用鼠标移动触发事件生成链接-->
+                <a href="" id="nextpage" onmouseover="nextpage()">下一页</a>
+                <!--利用键盘弹起时触发事件，获取当前输入的数字生成跳转链接实现go跳转-->
+                跳转到<input type="text" id="input_go" onkeyup="return go()"  style="text-align: center;background:transparent;border:0;border-radius: 0px;border-bottom: 1px solid;width: 30px;box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);" >页
+                <a href="" id="go"><button class="btn">go</button></a>
+            </div>
+            <input id="pageNow" type="hidden"  value="<{$page}>"/>
+            <input id="total_page" type="hidden"  value="<{$total_page}>"/>
+        </div>
+        <div class="span1"></div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    //设置下一页的链接
+    //alert(parseInt($('pageNow').value));//获取当前页码(这个是字符串)，将当前页码转化为整数
+    if(parseInt($('pageNow').value) < parseInt($('total_page').value))
+        $('nextpage').href = '?page='+(parseInt($('pageNow').value) +1);
+
+    function go(){
+        $('go').href = '?page='+$('input_go').value;
+    }
+
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>

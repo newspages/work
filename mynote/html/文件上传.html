@@ -1,0 +1,40 @@
+<!doctype html public "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="gb2312">
+<head>
+    <title> 添加、删除HTML结点 & 上传图片预览 </title>
+    <meta http-equiv="content-type" content="text/html; charset=gb2312" />
+    <meta name="author" content="枫岩,http://www.cnlei.com">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <script type="text/javascript">
+        <!--
+        function AddChild(sPid){
+            var oTextNode = document.getElementById("TplNode").getElementsByTagName("li")[0];
+            var oClone = oTextNode.cloneNode(oTextNode);
+            var p=document.getElementById(sPid);
+            p.appendChild(oClone);
+        }
+
+        function DelChild(o,sPid){
+            var oTextNode = o.parentNode;
+            var p=document.getElementById(sPid);
+            p.removeChild(oTextNode);
+        }
+
+        function PreviewImg(o,sPid){
+            document.getElementById(sPid).src=o.value;
+        }
+
+        -->
+    </script>
+</head>
+<body>
+<ul id="TplNode" style="display:none;">
+    <li><input type="file" name="" value="" size="64" onchange="PreviewImg(this,'PrevImg');" /> <a href="javascript:;" onclick="DelChild(this,'UpFiles');">删除</a></li>
+</ul>
+<ul id="UpFiles">
+    <li><input type="file" name="" value="" size="64" onchange="PreviewImg(this,'PrevImg');" /> <a href="javascript:;" onclick="DelChild(this,'UpFiles');">删除</a></li>
+</ul>
+<p><a href="javascript:;" onclick="AddChild('UpFiles');">增加附件</a></p>
+<p>图片预览：<br><img id="PrevImg" src="http://www.iecn.net/images/user_icons/2006/10/01/u_35653.gif" alt="" /></p> </body>
+</html>
