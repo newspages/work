@@ -1,0 +1,14 @@
+thinkphp三大自动：自动验证、字段映射、自动完成
+自动验证：
+protected $_validate = array(
+    array('','验证规则','错误提示信息'),
+);
+字段映射：
+protected $_map = array(
+    'name'  =>  'username',//把表单中的name名称映射到数据表中的username字段
+    'mail'  =>  'emial',//把表单中的mail映射到数据表中的email字段
+);
+自动完成：
+protected $_auto = array(
+    array(),
+);
