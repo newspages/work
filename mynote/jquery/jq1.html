@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../public/jquery-2.0.0.min.js"></script>
+</head>
+<body>
+    <p>这是jquery使用示例1--使用jquery发送ajax请求</p>
+    <button>点击请求数据</button>
+    <p>请求完成数据返回写入到这里：</p>
+    <p id="res"></p>
+    <script type="text/javascript">
+        $(function(){
+            $("button").click(function(){
+                $.ajax({url:'responseJquery.php',data:{name:'admin',password:'admin'},type:'post',async:'false',beforeSend:exec(),complete:complete(),cache:'false',success:function(result){
+                    $("#res").html(result);
+                    console.log(result);
+                },
+                error:function(error){//请求出错时执行的函数
+                    //alert(error.status+"\r\n"+error.statusText);
+                    $("#res").html("<font color='red'>出错了！<br/><br/>状态吗："+error.status+"<br/><br/>"+" 详细："+error.statusText)
+                }
+                });
+            });
+            function exec(){
+                //alert("请求前执行的函数");
+            }
+            function complete(){
+                //alert("请求完成时执行的函数,success、error函数");
+            }
+        });
+    </script>
+
+</body>
+</html>

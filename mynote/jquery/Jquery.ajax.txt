@@ -1,0 +1,15 @@
+Jquery 发送ajax带上数据发送请求的几种带数据方式：
+//第一种带数据方式
+$.ajax({url:"请求地址",data:"name=root$password=root"},type:'post',success:function(){alert('这是请求成功后回调的函数');});
+//第二种带数据方式
+$.ajax({url:"请求地址",data:{name:"root",password:"root"},type:'post',success:function(result){alert("返回的数据"+result);}});
+//第三种带数据方式（数组数据）
+$.ajax({url:"请求地址",data:{foo:["abcd","efgh"]},type:'post',success:function(){}});
+
+/*
+第一种我们用url传参，参数里面如果加带"&"这个符号的话，可能参数接收不到或不完整，
+如“ data: "name=John&location=Boston",” 如果name的值是"john&smith"这样写可能就会有问题，
+我们可以用JS里面的encodeURIComponent()方法进行转义，
+但如果用data: {name:"John",location:"Boston"}这种方式写的话就不需要进行转义，
+如果转义的话，接收的将是转义后的字符串
+*/
