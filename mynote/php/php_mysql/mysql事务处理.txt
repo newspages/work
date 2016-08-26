@@ -1,0 +1,27 @@
+public function insertUser ($userArray){
+  foreach ($userArray as $key => $value) {
+   @$field  .= "$key,";
+   @$content .= "'$value',";
+  }
+  $field  = ereg_replace(',$', '', $field);
+  $content = ereg_replace(',$', '', $content);
+
+  $db = db_connect();  //连接数据库
+
+  $db->autocommit(FALSE); //设置为非自动提交——事务处理
+
+  $sql1  = "INSERT INTO t_user (".$field.") VALUES (".$content.")";
+  $result1 = $db->query($sql1);
+
+  $sql2  = "INSERT INTO t_userpost (f_username) VALUES ('".$userArray['f_username']."')";
+  $result2 = $db->query($sql2);
+
+  if ($result1 && $result2) {
+   $db->commit();  //全部成功，提交执行结果
+   echo '提交';
+  } else {
+   $db->rollback(); //有任何错误发生，回滚并取消执行结果
+   echo '回滚';
+  }
+  $db->close();
+}
