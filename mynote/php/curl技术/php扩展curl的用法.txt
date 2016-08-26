@@ -1,0 +1,123 @@
+
+PHP扩展CURL的用法详解
+
+CURL是利用URL语法爱命令行方式下工作的文件传输工具。它支持很多协议。它支持认证功能。php中常用都实现更复杂的传输功能。
+
+实现的功能：
+
+1、实现远程获取和采集内容
+
+2、实现PHP 网页版的FTP上传下载
+
+3、实现模拟登陆：去一个邮件系统，curl可以模拟cookies
+
+4、实现接口对接（API），数据传输等：通过一个平台发送短信啊，抓取和传递所传输的信息。
+
+5、实现模拟Cookie等：登陆的状态下才可以操作一些属性。
+
+如何使用CURL功能：
+
+默认情况加PHP是不支持CURL的，需要在php.ini中开启该功能
+
+;extension=php_curl.dll前面的分号去掉
+
+1  整个操作过程中第一步是用cur_init()函数进行初始化
+$curl = curl_init(‘www.jb51.net')
+
+2.用curl_setopt（）函数进行设置选项。
+
+3.设置后，进行执行事务 curl_exec($curl);
+
+4 最后关闭curl_close();
+
+使用PHP CURL实现传输和获取功能（post传输方式）：获取远程网页数据
+
+$user = "admin";
+$pass = "admin";
+$curlPost = "user=$user&pass=$pass";
+$ch = curl_init(); //初始化一个CURL对象
+curl_setopt($ch, CURLOPT_URL, "http://localhost/edu/login.php");
+//设置你所需要抓取的URL
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
+//设置curl参数，要求结果是否输出到屏幕上，为true的时候是不返回到网页中
+假设上面的0换成1的话，那么接下来的$data就需要echo一下。
+curl_setopt($ch, CURLOPT_POST, 1);
+//post提交
+curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);
+$data = curl_exec($ch);
+//运行curl,请求网页。
+curl_close($ch);
+[/code]
+
+
+实现远程模拟登陆最基础部分。
+
+curl也还是需要配置用户名和密码的，只不过是被浏览器隐藏了。
+
+============================================================================
+
+curl模拟登陆
+
+模拟登陆：就是不登陆到php100的论坛，也能查看到相应的信息。
+
+分析登陆字段--->登陆后保留cookie状-->读取cookie并跳转到相关页-->抓取数
+
+1、模拟登陆后创建一个文件保存cookie内容
+
+2、通过读取生成的cookie内容模拟用户登陆状态
+
+3、到相关页面获取所需内容
+
+tempname创建一个临时文件
+
+tempnam() 函数创建一个具有唯一文件名的临时文件。 若成功，则该函数返回新的临时文件名。若失败，则返回 false。
+
+tempnam(dir,prefix)
+
+参数 描述
+
+dir 必需。规定创建临时文件的目录。
+
+prefix 必需。规定文件名的开头。
+
+相当于，fopen  fwirte  fclose
+
+它可以返回一个布尔值。使用第三方来登陆你的QQ、msn是很危险的，因为它可以记录你的登录状态，抓取你的用户名和密码。
+
+使用CURL模拟登陆到PHP100论坛
+
+1、分析登陆所需input框字段名和所需字段数量
+
+2、保存cookie 模拟登陆后获取会员金币数量
+
+代码：
+
+//初始化一个 cURL 对象
+$curl = curl_init();
+//设置你需要抓取的URL
+curl_setopt($curl, CURLOPT_URL, " http://www.baidu.com ");
+//设置cURL 参数，要求结果保存到字符串中还是输出到屏幕上。
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 0);
+//运行cURL，请求网页
+$data = curl_exec($curl);
+//关闭URL请求
+curl_close($curl);
+$user = "admin";
+$pass = "admin100";
+$curlPost = "user=$user&pass=$pass";
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, " http://localhost/curl/login.php ");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);
+$data = curl_exec($ch);
+curl_close($ch);
+?>
+if($_POST['user']=="admin"){
+ echo "";
+}else{
+ echo "";
+}
+//print_r($_POST);
+?>
+
