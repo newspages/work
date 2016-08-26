@@ -1,0 +1,33 @@
+LoadModule php5_module F:\\wamp\\php\\php5apache_2.2.dll
+PHPIni_dir "F:\\wamp\\php"
+AddType application/x-httpd-php .php .html .phtml
+
+LoadModule php5_module F:\\wamp\\php\php5apache_2.2.dll
+PHPIni_dir "F:\\wamp\php"
+AddType applcation/x-httpd-php .php .phtml
+
+On window
+extension_dir = "F:\\wamp\\php\\ext"
+
+打开需要使用扩展库
+
+On window
+extension_dir = "F:\\wamp\\php\\ext"
+
+LoadModule php5_module F:\\wamp\\php\\php5module_2.2.dll
+PHPIni_dir "F:\\wamp\\php"
+AddType application/x-httpd-php .php .phtml .html
+
+On window
+extension_dir = "F:\\wamp\\php\\ext"
+
+
+LoadModule php5_module F:\\wamp\\php\\php5module_2.2.dll
+PHPIni_dir "F:\\wamp\\php"
+AddType application/x-httpd-php .php .phtml .html
+
+On window
+extension_dir = "F:\\wamp\\php\\ext"
+
+
+
