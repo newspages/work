@@ -1,0 +1,6 @@
+mysql 创建新用户和授权访问
+创建用户：
+create user '用户名' @ '允许的主机ip' indentified by '密码';
+授权：
+grant all on 数据库名.*  to '用户名' @ '主机ip';
+create user 'ODBC'@'localhost' indentified by 'ODBC';

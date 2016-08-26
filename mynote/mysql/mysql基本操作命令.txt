@@ -1,0 +1,10 @@
+查看当前mysql所支持的存储引擎类型：
+show engines;
+
+查看当期mysql默认的存储引擎类型：
+show variables like "%storage_engines%";
+
+查看某张表使用了什么存储引擎：(在显示结果里参数engine后面的就表示该表当前用的存储引擎):
+show create table 表名;
+
+show table status;

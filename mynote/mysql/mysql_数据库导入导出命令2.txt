@@ -1,0 +1,146 @@
+在PHP网站开发中，时常遇到Mysql数据库备份或数据库迁移工作，这时Mysql怎么导入导出数据库中的数据就非常关键，Mysql本身提供了命令行导出工具Mysqldump和Mysql Source导入命令进行SQL数据导入导出工作，通过Mysql命令行导出工具Mysqldump命令能够将Mysql数据导出为文本格式(txt)的SQL文件，通过Mysql Source命令能够将SQL文件导入Mysql数据库中，下面通过Mysql导入导出SQL实例详解Mysqldump和Source命令的用法。
+
+Mysql命令行导出工具Mysqldump命令详解
+
+　　Mysql命令行导出工具Mysqldump.exe默认存放在Mysql安装目录中的bin子目录下，在使用Mysqldump导出数据库时，首先请确保Mysql服务已启动。
+　　M
+ysqldump导出命令基础用法
+
+
+复制代码 代码如下:
+
+mysqldump -u 用户名 -p [--opt] DATABASENAME [Table] >导出SQL文件名
+
+
+默认Mysqldump导出的SQL文件中不但包含了导出的数据，还包括导出数据库中所有数据表的结构信息。
+　　另外使用Mysqldump导出的SQL文件如果不带绝对路径，默认是保存在bin目录下的。
+　　–opt：此Mysqldump命令参数是可选的，如果带上这个选项代表激活了Mysqldump命令的quick，add-drop-table，add-locks，extended-insert，lock-tables参数，也就是通过–opt参数在使用Mysqldump导出Mysql数据库信息时不需要再附加上述这些参数。
+　　–quick：代表忽略缓冲输出，Mysqldump命令直接将数据导出到指定的SQL文件。
+　　–add-drop-table：顾名思义，就是在每个CREATE TABEL命令之前增加DROP-TABLE IF EXISTS语句，防止数据表重名。
+　　–add-locks：表示在INSERT数据之前和之后锁定和解锁具体的数据表，你可以打开Mysqldump导出的SQL文件，在INSERT之前会出现LOCK TABLES和UNLOCK TABLES语句。
+　　–extended-insert (-e)：此参数表示可以多行插入。
+　　更多的Mysqldump命令参数你可以通过
+
+
+复制代码 代码如下:
+
+
+Mysqldump --help
+
+
+
+命令查看Mysqldump包含的所有参数以及参数的支持情况。
+　　Mysqldump导出命令实例如下
+　　Mysql数据库安装后默认包含mysql数据库，我就以此数据库为例来演示Mysqldump的各种导出实例。
+　　使用Mysqldump导出数据库
+
+复制代码 代码如下:
+
+
+C:\Program Files\MySQL\MySQL Server 5.1\bin>mysqldump -u root -p --opt mysql >D:\PHPWeb\sqlbackup\mysql.sql
+Enter password: ******
+
+
+
+　　使用Mysqldump导出单个表
+
+
+复制代码 代码如下:
+
+
+
+C:\Program Files\MySQL\MySQL Server 5.1\bin>mysqldump -u root -p --opt mysql user >D:\PHPWeb\sqlbackup\mysql_user.sql
+Enter password: ******
+
+
+
+使用Mysqldump导出数据表结构
+
+
+复制代码 代码如下:
+
+
+C:\Program Files\MySQL\MySQL Server 5.1\bin>mysqldump -u root -p --no-data mysql user >D:\PHPWeb\sqlbackup\mysql_user.sql
+Enter password: ******
+
+
+
+　　说明：Mysqldump命令参数 –no-data顾名思义代表Mysqldump导出的数据中不含有INSERT数据，仅仅只是Mysql数据库表user的结构信息。对于这个参数你也可以使用-d来表示。
+　　使用Mysqldump导出指定条件的数据
+
+
+复制代码 代码如下:
+
+
+C:\Program Files\MySQL\MySQL Server 5.1\bin>mysqldump -u root -p "--where= user= 'root'" mysql user >D:\PHPWeb\sqlbackup\mysql_user.sql
+Enter password: ******
+
+
+
+说明：在这个Mysqldump导出实例中，通过设定Mysqldump命令参数 –where=conditions设定导出的INSERT数据条件为user表中user字段为root的INSERT记录。通过这个参数你可以根据需要选用Mysqldump导出自己想要的数据，非常方便。注意在这个where选项前后都需要使用双引号，具体的条件可以使用单引号，否则在解析Mysqldump命令行参数时会出错，另外你也可以指定多个where参数。
+
+　　Mysql数据库导入命令Source详解
+
+　　Mysql最常用的数据库导入命令就是Source，Source命令的用法非常简单，首先你需要进入Mysql数据库的命令行管理界面，然后选择需要导入的数据库，即
+
+
+复制代码 代码如下:
+
+
+USER 数据库
+source 已导出的SQL文件
+
+
+
+注意需要导入的SQL文件的具体目录地址，最好使用/。
+　　至此Mysql命令行导出工具Mysqldump命令以及Mysql导入命令Source的用法就介绍完了，相对于Mysql Source命令，Mysqldump导出功能更丰富，合理利用Mysqldump命令参数能够实现不同的效果。
+
+mysqldump命令导出数据用法详解
+
+在平时的mysql应用中，总会碰到导入数据，导出数据，当然有很多方法，这篇文章，主要介绍应用mysqlmysqldump命令进行数据导入导出，希望对大家有所帮助。
+
+mysqldump命令中带有一个 --where/-w 参数，它用来设定数据导出的条件，使用方式和SQL查询命令中中的where基本上相同，有了它，我们就可以从数据库中导出你需要的那部分数据了。
+
+1.命令格式如下：
+
+mysqldump -u用户名 -p密码 数据库名 表名 --where="筛选条件" > 导出文件路径
+
+例子：
+
+从test数据库的test_data表中导出id大于100的数据到 /tmp/test.sql 这个文件中
+
+
+复制代码 代码如下:
+
+
+mysqldump -uroot -p123456 test test_data --where=" id > 100" > /tmp/test.sql
+
+
+
+2.导出整个数据库
+
+mysqldump -u 用户名 -p 数据库名 > 导出的文件名
+
+
+复制代码 代码如下:
+
+
+mysqldump -u wcnc -p smgp_apps_wcnc > wcnc.sql
+
+
+
+3.导出一个数据库结构
+
+
+复制代码 代码如下:
+
+
+mysqldump -u wcnc -p -d --add-drop-table smgp_apps_wcnc >d:wcnc_db.sql
+-d 没有数据 --add-drop-table 在每个create语句之前增加一个drop table
+
+
+
+
+导出库表（mysqldump）条件
+
+mysqldump -u用户名 -p密码 -h主机 数据库 a -w “sql条件” –lock-all-tables > 路径
