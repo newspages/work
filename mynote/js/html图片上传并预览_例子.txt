@@ -1,0 +1,62 @@
+图片上传例子：
+<!DOCTYPE html>
+<html>
+<head>
+       <title>图片上传并预览</title>
+        <meta charset="utf-8"/>
+</head>
+<body>
+    <p>请选择图片:<input type="file" name="picture" id="picture" onchange="viewImage(this)"/></p>
+    <p><img src="" id="view" style="display:none"/></p>
+    <script type="text/javascript">
+        //显示上传的图片
+        function viewImage(e){
+            if(e.files && e.files[0]){
+                $('view').style.display = 'block';
+                $('view').style.height = '200px';
+                $('view').style.width = '200px';
+                //为上传的图片创建一个url，并将这个url赋值给$('view').src
+                $('view').src = window.URL.createObjectURL(e.files[0]);
+            }
+        }
+        //获取元素并返回
+        function $(id){
+            return document.getElementById(id);
+        }
+    </script>
+</body>
+</html>
+
+
+图片上传例子改进:
+<!DOCTYPE html>
+<html>
+<head>
+       <title>图片上传并预览</title>
+        <meta charset="utf-8"/>
+</head>
+<body>
+    <p>请选择图片:<input type="file" name="picture" id="picture"/></p>
+    <p><img src="" id="view" style="display:none"/><button type="button" id="button" style="display:none" onclick="viewImage(e)">预览图片</button></p>
+    <script type="text/javascript">
+        //显示上传的图片
+        function viewImage(e){
+            if($('picture').files && $('picture').files[0]){
+                if($('view').style.display == 'none'){
+                    $('view').style.display = 'block';
+                                    $('view').style.height = '200px';
+                                    $('view').style.width = '200px';
+                                    //为上传的图片创建一个url，并将这个url赋值给$('view').src
+                                    $('view').src = window.URL.createObjectURL($('picture').files[0]);
+                }else{
+                    $('button').value = '关闭显示';
+                }
+            }
+        }
+        //获取元素并返回
+        function $(id){
+            return document.getElementById(id);
+        }
+    </script>
+</body>
+</html>
