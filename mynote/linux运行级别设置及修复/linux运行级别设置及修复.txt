@@ -1,0 +1,28 @@
+/*
+    记录于20160728
+    问题描述：在测试linux的运行级别时，将etc中的inittab文件中的id:x:default中的x值设为6，发现系统不断的重启
+*/
+centos下测试成功：
+当管理员将系统的运行级别设置为 6 时，此时当你重启系统时发现永远无法进入系统，
+系统会一直不断的重启，此时有两种办法可以解决：
+1.最傻瓜的重装系统，但是这个并不是我们想要的解决方法。
+2.重启系统时迅速按下 e 在弹出的对话框中选项如下所示：
+root （hd0,0）
+kernel /vmlinuz-2.6-32-573.e16.i686 ro root=/dev/mapperVolGroup-lv_r
+initrd /initramfs-2.6.32-573.e16.i686.img
+在上面三个选项中我们使用上下箭头选择第二个 按 e 进入第二个选项，接着在<olGroup/lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet后面加上
+init=/bin/bash
+即变成这样：
+<olGroup/lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet init=/bin/bash
+接着按回车键 在按 b 就会自动重启了
+重启完成后进入到 bash-4.1# 命令 ，此时如果想修改文件，发现修改完但是保存不了，所以在进入bash-4.1#时我们要在bash-4.1#后面加上 "mount -o remount,rw /" （不包括引号）然后回车，
+好开心 * 这是后就可以编辑文件了
+现在我们就可以进入到 etc/inittab 文件修改 id:x:initdefault 了，修改完保存重启系统即可！可以按Ctrl+Alt+Insert重启或者其它方式重启
+终于解决这个问题了！太开心了
+
+问题探索：
+我想既然这样子可以绕过输密码就能进去系统，那是不是也可以修改密码呢？
+结果让我很高心但是又大吃一惊！真的可以修改密码，居然连管理员的密码都可以修改！！太不可思议了，普通用户的密码修改那更不在话下了！！
+这个发现就可以解决管理员密码丢失，怎么重置密码的问题了！
+但是要注意的是问题跟上面类似，当重启时按 e 选择第二项，再 按 e 进入编辑，在<olGroup/lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet 后面同样是加上
+init=/bin/bash 接着按回车 再按 b 重启，进入bash-4.1#时也是无法直接重置密码的，也必须要在bash-4.1#后面输入mount -o remount,rw / 回车即可重置密码了 passwd 用户名 然后回车即可
