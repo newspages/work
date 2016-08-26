@@ -1,0 +1,5 @@
+ubuntu安装ab
+apt-get install apache2-utils
+
+centos安装ab
+yum install httpd-tools
