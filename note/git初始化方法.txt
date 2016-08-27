@@ -1,0 +1,18 @@
+Repository 仓库
+Star 收藏
+Fork 复制克隆项目
+pull Request 发起请求
+watch 关注
+issue 事务卡片
+翻墙工具：shadowsocks
+
+Git初始化即仓库创建和操作
+基本信息设置
+1.设置用户名
+git config --globalm user.name '用户名(github上的用户名)'
+2.设置用户邮箱
+git config --global user.email 'github邮箱'
+
+git config --list
+
+ctrl+shift+delete清空缓存
