@@ -1,0 +1,39 @@
+一、中文截取：mb_substr()
+
+mb_substr( $str, $start, $length, $encoding )
+
+$str，需要截断的字符串
+$start，截断开始处，起始处为0
+$length，要截取的字数
+$encoding，网页编码，如utf-8,GB2312,GBK
+
+实例：
+
+复制代码 代码如下:
+
+
+<?php
+$str='脚本之家：http://www.jb51.net';
+echo mb_substr($str,0,4,'utf-8');//截取头5个字，假定此代码所在php文件的编码为utf-8
+?>
+结果显示：脚本之家
+
+
+
+二、获取中文长度:mb_strlen()
+
+mb_strlen( $str, $encoding )
+
+$str，要计算长度的字符串
+$encoding，网页编码，如utf-8,GB2312,GBK
+
+实例：
+
+复制代码 代码如下:
+
+
+<?php
+$str='脚本之家：http://www.jb51.net';
+echo mb_strlen($str,'utf-8');//假定此代码所在php文件的编码为utf-8
+?>
+结果显示：24
