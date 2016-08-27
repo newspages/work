@@ -1,0 +1,87 @@
+CentOS 6.3 安装LNMP (PHP 5.4,MyySQL5.6)
+mysql 5.6 强势发布，除了新特性，性能较mysql 5.5 有很大提升，约200%，默认参数发生了变化。
+
+相关阅读：
+
+MySQL 性能比较测试：MySQL 5.6 GA -vs- MySQL 5.5 http://www.linuxidc.com/Linux/2013-04/82070.htm
+
+MySQL 5.5 和 5.6 默认参数值的差异 http://www.linuxidc.com/Linux/2013-04/82071.htm
+
+由于比较懒，通过拼凑，用yum+ rpm安装成功了lnmp，分享给大家。
+
+nginx就不多说了，安装官网最新版。
+
+#cat /etc/yum.repos.d/nginx.repo
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/CentOS/$releasever/$basearch/
+gpgcheck=0
+enabled=1
+
+#yum install nginx
+
+尽管centos 6.3 已经可以通过cr 获得官方仓库的php-fpm，但是5.3版本实在太老了。
+
+php5.4 较php5.3性能上也有很大提升(这里有一个简单的例子)，这里选择ius的（remi的版本我没有测试成功），也可以yum获得
+
+rpm -ivh http://mirrors.ustc.edu.cn/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm-ivh http://dl.iuscommunity.org/pub/ius/stable/RedHat/6/SRPMS/ius-release-1.0-10.ius.el6.src.rpm
+
+yum install php54-cli php54-fpm php54-gd php54-mbstring php54-mcrypt php54-pdo php54-xml php54-xmlrpc
+
+上面还没有安装php54-mysql，后面有讲到为什么
+
+下载如下mysql软件包,点击这里，或者官网，
+
+MySQL-client-5.6.10-1.el6.x86_64.rpm
+
+MySQL-server-5.6.10-1.el6.x86_64.rpm
+
+MySQL-shared-compat-5.6.10-1.el6.x86_64.rpm
+
+安装mysql 5.6 （如果提示有依赖包，比如libaio，需要先yum安装依赖包）
+
+rpm -Uvh MySQL-client-5.6.10-1.el6.x86_64.rpm MySQL-server-5.6.10-1.el6.x86_64.rpm MySQL-shared-compat-5.6.10-1.el6.x86_64.rpm
+
+启动mysql
+
+service mysql start
+
+mysql 5.6 默认root密码为随机，首次必须修改，随机密码位于文件/root/.mysql_secret里，第一次必须修改密码，否则mysql不可用。
+
+mysqladmin -u root -p'oldpass' password 'newpass'
+history -c
+
+这样修改会有明文密码记录在shell 的history命令中，需要清除，另一种办法是进入mysql 修改密码，不详述。
+
+由于mysql-libs软件包和MySQL-server-5.6.10-1.el6.x86_64.rpm版本冲突，如果你已经安装了，
+
+需要先行强行卸载
+
+01.rpm -e mysql-libs --nodeps
+
+安装php54-mysql，这一安装步骤一定要放在最后
+
+01.yum install php54-mysql
+
+否则php-fpm无法启动，可能出现的报错大致如下
+
+[root@localhost ~]# service php-fpm start
+Starting php-fpm: [26-May-2018 10:27:53] NOTICE: PHP message: PHP Warning: PHP Startup: Unable to load dynamic library '/usr/lib64/php/modules/mysql.so' - libmysqlclient.so.16: cannot open shared object file: No such file or directory in Unknown on line 0
+[26-May-2018 10:27:53] NOTICE: PHP message: PHP Warning: PHP Startup: Unable to load dynamic library '/usr/lib64/php/modules/mysqli.so' - libmysqlclient.so.16: cannot open shared object file: No such file or directory in Unknown on line 0
+[26-May-2018 10:27:53] NOTICE: PHP message: PHP Warning: PHP Startup: Unable to load dynamic library '/usr/lib64/php/modules/pdo_mysql.so' - libmysqlclient.so.16: cannot open shared object file: No such file or directory in Unknown on line 0
+
+另外，php-fpm默认以apache身份运行，你可能需要先安装httpd，然后卸载httpd，这样系统就会留下一个空白的apache用户供php-fpm使用。
+
+启动php-fpm，如果没有报错，则表示没问题，
+
+lnmp配置过程略，见我早期的一篇博文，点击这里
+
+最后附上一段php代码测试mysql连接，
+
+<?php
+$link=mysql_connect('localhost','root','passwd');
+if(!$link) echo "link error!";
+else echo "link is OK!";
+mysql_close();
+?>

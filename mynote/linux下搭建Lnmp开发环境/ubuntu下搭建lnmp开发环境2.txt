@@ -1,0 +1,155 @@
+配置环境说明：
+系统：Ubuntu 12.04  32位
+内存：512M
+硬盘：20G
+
+一、安装nginx
+1：ubuntu因为安全策略，一般是禁用了root用户，所以每次执行命令时一般需要加上sudo去操作。为了方面后面其他步骤操作，可首先切换到root用户，这样后面不需要每次都加sudo了。
+
+sudo su –  （切换用户）
+
+2：默认ubuntu默认是官方的源，国内用户访问可能会比较慢，所以将官方的源修改为163的源，修改方法此处不做介绍，可查ubuntu官方的wiki帮助手册。
+
+3：源修改完毕后记得要刷新列表：
+
+apt-get update
+
+下面就开始安装nginx了
+
+安装nginx的方式有多种，可以通过官方下载nginx源码包编译安装，也可以通过ubuntu软件包的形式安装，个人觉得都可以。大致考虑如下几点因素：
+
+1）如果本身系统就是通过源码编译安装的，那么系统的性能将是比较高的，那么这种情况，通过源码来安装软件，性能是比较好的。而如果系统采用的是ubuntu等发行版安装的，那么软件通过源码编译并不能带来非常明显的性能提升。当然如果你想锻炼一下，或者自我满足一下，也可以试试通过源码安装。
+
+2）如果本身搭建环境的目地是为了测试、学习或小型的网站搭建，那么也不建议通过源码的方式来安装，源码安装的方式出现的问题会比较多，同时也增加了小型站长日后维护的难度。
+
+3）本身ubuntu系统支持的在线包管理机制，技术肯定已经非常成熟了，没有必要过分担心其稳定性与安全性。
+
+4）当然通过源码编译的方式带来的好处是，定制性比较高。所以看个人需求了。
+
+好了，废话不多说啦，开始进入正题。
+
+4：安装nginx
+
+执行命令：apt-get install nginx
+
+5.安装完毕后，启动nginx，对于Nginx 0.8.x后的版本采用新的启动、停止、平滑启动方式
+
+开启服务：
+
+/etc/init.d/nginx start
+
+也有另外一种开启服务的方式
+
+/usr/sbin/nginx -c /etc/nginx/nginx.conf
+
+前面是nginx的安装路径，-c代表的是指定nginx配置文件的路径
+
+停止服务
+/etc/init.d/nginx -s stop
+
+重载
+
+/etc/init.d/nginx -s reload
+
+启动完毕后，打开浏览器，访问http://localhost  查看nginx是否正常安装并启动。vps等如果有防火墙限制，则可能不能通过ip的方式直接访问，而需要通过配置域名来访问。nginx配置虚拟主机的方式，后面在说。
+
+二、安装MySQL
+
+Ubuntu 安装mysql相对比较简单
+
+1.安装mysql的服务端
+
+apt-get install mysql-server
+
+在安装的过程中需要你输入root用户的密码。
+
+2.安装mysql的客户端
+apt-get install mysql-client
+
+3.安装完毕后，一般需要重新设置下字符集
+
+1） 查看当前的编码：show variables like 'character%';
+2)　修改my.cnf，在[client]下添加default-character-set=utf8
+
+命令：vi /etc/mysql/my.cnf
+3） 在[server]下添加default-character-set=utf8，init_connect='SET NAMES utf8;'
+4） 重启mysql
+
+/etc/init.d/mysql restart
+
+三、安装php5-fpm
+
+apt-get install php5-cgi
+
+apt-get install php5-fpm
+
+apt-get install php5-curl  （客户端 URL 库函数库）
+
+apt-get install php5-gd （GD库图像函数库）
+
+apt-get install php5-mysql  （增加对mysql支持）
+
+apt-get install php5-mcrypt  （Mcrypt 加密函数库）
+
+apt-get install php5-memcache  （Memcache客户端）
+
+apt-get install php5-memcached  （Memcache服务端）
+
+apt-get install php5-dev    （开发支持模块）
+
+1：模块说明：
+
+什么是CGI ？
+
+CGI全称是“公共网关接口”(Common Gateway Interface)，HTTP服务器与你的或其它机器上的程序进行“交谈”的一种工具，其程序须运行在网络服务器上。
+
+什么是FastCGI ？
+
+FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只要激活后，不会每次都要花费时间去fork一次(这是CGI最为人诟病的fork-and-execute 模式)。它还支持分布式的运算, 即 FastCGI 程序可以在网站服务器以外的主机上执行并且接受来自其它网站服务器来的请求。
+
+什么是PHP-CGI ？
+
+PHP-CGI是PHP自带的FastCGI管理器。
+
+什么是PHP-FPM ？
+
+PHP-FPM是一个PHP FastCGI管理器，是只用于PHP的。
+PHP-FPM其实是PHP源代码的一个补丁，旨在将FastCGI进程管理整合进PHP包中。
+PHP5.3.3已经集成php-fpm了，不再是第三方的包了。PHP-FPM提供了更好的PHP进程管理方式，可以有效控制内存和进程、可以平滑重载PHP配置，所以被PHP官方收录了。在./configure的时候带 –enable-fpm参数即可开启PHP-FPM。
+使用PHP-FPM来控制PHP-CGI的FastCGI进程
+
+2：安装完毕后，对fastcgi 配置需要做些修改
+
+vi /etc/nginx/fastcgi_params
+
+注释下面这行
+#fastcgi_param  SCRIPT_FILENAME        $request_filename;
+增加此行
+fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+
+3：php5-fpm 配置优化
+
+vi /etc/php5/fpm/pool.d/www.conf
+
+下面4个参数的意思分别为：
+pm.max_children：静态方式下开启的php-fpm进程数量。
+pm.start_servers：动态方式下的起始php-fpm进程数量。
+pm.min_spare_servers：动态方式下的最小php-fpm进程数量。
+pm.max_spare_servers：动态方式下的最大php-fpm进程数量。
+
+注：以内存512M的VPS来说，建议设置的参数如下，仅供参考：
+pm=dynamic
+pm.max_children=20
+pm.start_servers=5
+pm.min_spare_servers=5
+pm.max_spare_servers=20
+
+四、安装apc加速器
+
+APC 可显著加速 PHP 应用的速度。在应用中加入 APC 可提升应用的响应速度，降低服务器负载。
+
+apt-get install php-apc
+
+五、重启php-fpm、nginx
+sudo /etc/init.d/php5-fpm restart
+sudo /etc/init.d/nginx restart
