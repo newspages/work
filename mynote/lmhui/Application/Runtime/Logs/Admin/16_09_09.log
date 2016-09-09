@@ -1,0 +1,100 @@
+[ 2016-09-09T13:31:45+08:00 ] 127.0.0.1 /lmhui/index.php/admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000836s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001644s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001731s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000093s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000173s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012772s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012857s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001258s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001330s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001554s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001646s ]
+
+[ 2016-09-09T13:31:49+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/User/lists.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000454s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000858s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000908s ]
+NOTIC: [8] Use of undefined constant ture - assumed 'ture' F:\wamp\apache\htdocs\truck\lmhui\ThinkPHP\Common\functions.php 第 588 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2016-09-09T13:32:16+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/User/lists.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000419s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000596s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000652s ]
+NOTIC: [8] Use of undefined constant ture - assumed 'ture' F:\wamp\apache\htdocs\truck\lmhui\ThinkPHP\Common\functions.php 第 588 行.
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2016-09-09T13:32:21+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/Good/show.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000455s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000875s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000929s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000045s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000092s ]
+NOTIC: [8] Undefined variable: user F:\wamp\apache\htdocs\truck\lmhui\Application\Runtime\Cache\Admin\c11397ed39330d935435d4c30c84757c.php 第 15 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006923s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006975s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000889s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000947s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001130s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001183s ]
+
+[ 2016-09-09T13:47:06+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/importData.html
+ERR: 无法加载控制器:DataSource
+
+[ 2016-09-09T13:48:07+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/importData.html
+ERR: 无法加载控制器:DataSource
+
+[ 2016-09-09T13:48:23+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/importData.html
+ERR: 无法加载控制器:DataSource
+
+[ 2016-09-09T13:48:24+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/importData.html
+ERR: 无法加载控制器:DataSource
+
+[ 2016-09-09T13:48:34+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/importData.html
+ERR: 无法加载控制器:DataSource
+
+[ 2016-09-09T13:48:44+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/importData.html
+ERR: 无法加载控制器:DataSource
+
+[ 2016-09-09T14:10:00+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/upload_excel.php
+ERR: 非法操作:upload_excel.php
+
+[ 2016-09-09T14:11:32+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/upload_excel.php
+ERR: 非法操作:upload_excel.php
+
+[ 2016-09-09T14:11:41+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/upload_excel.php
+ERR: 非法操作:upload_excel.php
+
+[ 2016-09-09T14:19:13+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/upload_excel.php
+ERR: 非法操作:upload_excel.php
+
+[ 2016-09-09T14:33:25+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/upload_excel.php
+ERR: 非法操作:upload_excel.php
+
+[ 2016-09-09T14:34:34+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/upload_excel.php
+ERR: 非法操作:upload_excel.php
+
+[ 2016-09-09T16:22:17+08:00 ] 127.0.0.1 /lmhui/index.php/Admin/DataSource/importData.html
+ERR: Cell coordinate can not be zero-length string
+
