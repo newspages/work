@@ -1,0 +1,73 @@
+/***************************文件：index.php*********************/
+文件：index.php
+namespace A;
+class IndexController{
+    public function index(){
+        echo 'this is index function';
+    }
+}
+/***************************************************************/
+
+/**************************文件：user.php***********************/
+文件：user.php
+namespace B
+class UserController{
+    public function user{
+        echo 'this is user function';
+    }
+}
+/***************************************************************/
+
+/**************************文件：demo.php***********************/
+在文件demo.php中使用IndexController、UserController这两个类
+文件：demo.php
+方法1：
+require "index.php";
+require "user.php";
+
+$index = new A\IndexController();
+$index->index();
+
+$user = new B\UserController();
+$user->user();
+
+方法2：
+require "index.php";
+require "user.php";
+use A\IndexController;  // 等价于 use A\IndexController as IndexController; 后面不加 as IndexController 默认是类名
+use B\UserController;   // 等价于 use A\IndexController as IndexController; 后面不加 as IndexController 默认是类名
+
+$index = new IndexController();
+$index->index();
+
+$user = new UserController();
+$user->user();
+
+/*****************************************************************/
+
+/*******************************文件：demo.php*******************************/
+如果demo.php文件中也定义命名空间，使用IndexController、UserController这两个类的方式就会变了
+文件：demo.php
+方法1：(区别在于，如果当前文件也定义命名空间的，那么在使用其它命名空间时前面要加上 \ )
+namespace Demo; //这个是demo.php文件自己定义的命名空间
+require "index.php";
+require "user.php";
+
+$index = new \A\IndexController();
+$index->index();
+
+$user = new \B\UserController();
+$user->user();
+
+方法2：(方法2没有变化)
+require "index.php";
+require "user.php";
+use A\IndexController;
+use B\UserController;
+
+$index = new IndexController();
+$index->index();
+
+$user = new UserController();
+$user->user();
+/***********************************************************************/

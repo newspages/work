@@ -1,0 +1,13 @@
+<?php
+/**
+*   功能：使用php提供的函数实现数据的post、get请求
+*/
+    //时区设置
+    date_default_timezone_set("Asia/Shanghai");
+    $AppKey = '762698eb746e425de0634ff0876f5e68';
+    $AppSecret = '3137cf23ce5e';
+    $Nonce = mt_rand(10*128,10*129-1);//产生1280~1289之间的伪随机数，包含1280和1289
+    $CurTime = time();//系统当前时间戳
+    $CheckNum = sha1($AppKey.$AppSecret.$Nonce,false);
+
+    function

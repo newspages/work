@@ -1,0 +1,24 @@
+//PHP缓存控制的几个函数:
+//开启缓存 [通过php.ini,也可以在页面 ob_start()]
+ob_start();
+echo "yyy";
+header("content-type:text/htm;charset=utf-8");
+echo "hello";
+//ob_clean函数可以清空 outputbuffer的内容.
+//ob_clean();
+//ob_end_clean是关闭ob缓存，同时清空.
+//ob_clean();
+//ob_end_flush() 函数是 把ob缓存的内存输出,并关闭ob
+//ob_end_flush();
+//ob_end_flush() 函数是 把ob缓存的内存输出,
+//ob_flush()函数是输出ob内容，并清空,但不关闭.
+ob_flush();
+
+echo "kkk";//=>ob缓存.
+
+//header("content-type:text/htm;charset=utf-8");
+
+//ob_get_contents() 可以获取output_buffering的内容.
+//$contents=ob_get_contents();
+
+//file_put_contents("d:/log.text",$contents);

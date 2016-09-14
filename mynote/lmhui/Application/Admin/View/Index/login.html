@@ -1,0 +1,32 @@
+<style type="text/css">
+    body{
+        background: #f6f6f6;
+    }
+</style>
+<link href="__ROOT__/Application/Public/css/home/login.css" rel="stylesheet" type="text/css"/>
+<!--<form action="{:U('Index/register')}" method="post">-->
+<include file="public/header"/>
+<div class="middle">
+    <div class="middle-img">
+        <img src="__ROOT__/Application/Public/image/middle-img.jpg"/>
+    </div>
+    <div class="middle-form">
+        <span class="title">新用户注册</span>
+        <div class="form">
+            <form action="{:U(Index/login)}" method="post">
+                <p><span class="rtit" style="text-align: right;">　用户名：</span><input type="text" name="name"/><br/></p>
+                <p><span class="rtit" style="text-align: right;">　　密码：</span><input type="password" name="pwd"/><br/></p>
+                <p><span class="rtit" style="text-align: right;">　验证码：</span><input type="text" name="code"/><br/></p>
+                <p><input type="submit" value="登录"/><br/></p>
+            </form>
+            <div id="msg">
+                {$msg}
+            </div>
+        </div>
+
+    </div>
+</div>
+<include file="public/footer"/>
+<script type="text/javascript">
+
+</script>
