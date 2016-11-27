@@ -1,0 +1,74 @@
+来源：https://my.oschina.net/maczhao/blog/348533
+摘要: curl不能支持https问题
+默认情况下，libcurl不支持https, 如果使用https链接，就会出现" Protocol https not supported or disabled in libcurl" 的错误提示。查看curl是否支持https可以使用命令：
+
+curl -V。
+
+curl有两种方式使用https :
+
+1. 设定为不验证证书和HOST
+
+code = curl_easy_setopt(handle, CURLOPT_SSL_VERIFYPEER, 0L);
+
+2. 设定一个SSL判别证书
+
+http://curl.haxx.se/ca/cacert.pem
+
+基于这两种方法都不知道怎么去使用，所以只好用最笨的方法，重装curl：
+
+1.下载curl-7.14.0.tar.gz压缩包，网上很多
+
+2.解压：# tar -zxvf curl-7.14.0.tar.gz
+
+# cd curl-7.14.0
+
+# ./configure 这里注意的是最后会显示一段信息提示是否支持https：
+
+curl version:    7.14.0
+  Host setup:      x86_64-unknown-linux-gnu
+  Install prefix:  /usr/local
+  Compiler:        gcc
+  SSL support:     no      (--with-ssl / --with-gnutls)
+  zlib support:    enabled
+  krb4 support:    no      (--with-krb4*)
+  GSSAPI support:  no      (--with-gssapi)
+  SPNEGO support:  no      (--with-spnego)
+  c-ares support:  no      (--enable-ares)
+  ipv6 support:    enabled
+  IDN support:     enabled
+  Build libcurl:   Shared=yes, Static=yes
+  Built-in manual: enabled
+  Verbose errors:  enabled (--disable-verbose)
+  SSPI support:    no      (--enable-sspi)
+  ca cert path:    no
+这里的SSL support提示的是不支持的，因为https协议是加密安全的基于http的协议，需要使用openssl的静态库，所以需要支持https就必须下载openssl，这里不做赘述，方法可见：http://www.linuxidc.com/Linux/2011-01/31229.htm
+
+# vi /etc/ld.so.conf，在这里面将openssl生成的库文件所在目录加入，使用命令ldconfig刷新缓存。
+
+# ./configure --prefix=/usr/local/curl --with-ssl=/usr/local/ssl ，注意最后一段信息
+
+curl version:    7.14.0
+  Host setup:      x86_64-unknown-linux-gnu
+  Install prefix:  /usr/local
+  Compiler:        gcc
+  SSL support:     enabled (OpenSSL)
+  zlib support:    enabled
+  krb4 support:    no      (--with-krb4*)
+  GSSAPI support:  no      (--with-gssapi)
+  SPNEGO support:  no      (--with-spnego)
+  c-ares support:  no      (--enable-ares)
+  ipv6 support:    enabled
+  IDN support:     enabled
+  Build libcurl:   Shared=yes, Static=yes
+  Built-in manual: enabled
+  Verbose errors:  enabled (--disable-verbose)
+  SSPI support:    no      (--enable-sspi)
+  ca cert path:    /usr/local/share/curl/curl-ca-bundle.crt
+提示支持openssl已经支持了，然后再make， make install即可。
+
+# curl -V
+
+curl 7.14.0 (x86_64-unknown-linux-gnu) libcurl/7.14.0 OpenSSL/1.0.1e zlib/1.2.3 libidn/1.18
+Protocols: ftp gopher telnet dict ldap http file https ftps 
+Features: IDN IPv6 Largefile NTLM SSL libz
+提示已经支持https了。
