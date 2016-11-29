@@ -1,0 +1,13 @@
+说明：局域网内配置让其他机器也可以访问我的电脑上的apache服务器
+步骤：
+1.dos下查看ip
+  假设ip是192.168.2.16
+2.在httpd.conf文件里，加上如下代码，然后局域网里面的其它电脑就可以通过192.168.2.16:81访问我的电脑里面的网站了（记得关闭防火墙）
+<VirtualHost 192.168.2.101:81>
+ DocumentRoot "F:/mater"
+</VirtualHost>
+
+<Directory "F:/master"> 
+ Order Deny,Allow 
+ Allow from all 
+</Directory>
