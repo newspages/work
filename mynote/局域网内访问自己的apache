@@ -11,3 +11,14 @@
  Order Deny,Allow 
  Allow from all 
 </Directory>
+
+#使用局域网ip配置，局域网内的其它电脑也可以通过192.168.2.101:81访问到自己的电脑上F:/master文件夹
+#如果master文件夹下有index.php或者index.html文件，而且有配置的话通过192.168.2.101:81访问默认是访问index文件
+<VirtualHost 192.168.2.101:81>
+ DocumentRoot "F:/mater"
+</VirtualHost>
+
+<Directory "F:/master"> 
+ Order Deny,Allow 
+ Allow from all 
+</Directory>
